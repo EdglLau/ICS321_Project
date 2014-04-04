@@ -31,8 +31,8 @@
           <ul class="nav navbar-nav">
             <li><a href="index.php">Home</a></li>
             <li><a href="register.php">Register</a></li>
-            <li><a href="mybooking.php">Booking</a></li>
-            <li class="active"><a href="about.php">About</a></li>
+            <li class="active"><a href="mybooking.php">Booking</a></li>
+            <li><a href="about.php">About</a></li>
             
           </ul>
         </div>
@@ -42,15 +42,51 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>About Page</h1>
+        <h1>Reservations</h1>
         <br>
 		
-        <h2 class="lead">ICS 321 Final Project</h2>
-        <h3>Team Members</h3>
-        <p>Ryan Barasatan</p>
-        <p>Micah Hwang</p>
-        <p>Edgar Lau</p>
+        <h2 class="lead">My reservations</h2>
+        
+    <div class="reserve-table">   
+    <?php
+		$host  = "localhost";
+		$un    = "user1";
+		$pw    = "password1";
+		$db    = "database";
+		
+		$conn = mysqli_connect($host, $un, $pw, $db);
+		if (mysqli_connect_errno())
+		{
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+		//echo "Your currently booked rooms: <br/>";
+		//$user = $_SESSION['user_name'];
+		$res = mysqli_query($conn,"SELECT *
+							      FROM reservations");
 
+		echo "<table border='1'>
+		<tr>
+		<th>Room ID</th>
+		<th>Guest ID</th>
+    	<th>Check In</th>
+    	<th>Check Out</th>
+		</tr>";
+
+		while($row = mysqli_fetch_array($res))
+		{
+			echo "<tr>";
+			echo "<td>" . $row['RmID'] . "</td>";
+			echo "<td>" . $row['GuestID'] . "</td>";
+          	echo "<td>" . $row['InDate'] . "</td>";
+          	echo "<td>" . $row['OutDate'] . "</td>";
+			echo "</tr>";
+		}
+		echo "</table>";
+		
+		mysqli_close($conn);
+		
+		?>
+		</div> 
       </div>
 
     </div>

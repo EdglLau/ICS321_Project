@@ -30,8 +30,9 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="index.php">Home</a></li>
-            <li><a href="about.php">About</a></li>
             <li class="active"><a href="register.php">Register</a></li>
+            <li><a href="mybooking.php">Booking</a></li>
+            <li><a href="about.php">About</a></li>
           </ul>
         </div>
       </div>
